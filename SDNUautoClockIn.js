@@ -76,8 +76,7 @@ sleep(5000);
 
 while(!click("提 交")){
   while(!text("提 交").exists()) swipe(500, 1700, 500, 300, 10);
-  var finish = findAndClick("提 交");
-  if(finish) break;
+  if(findAndClick("提 交")) break;
 };
 
 text("提交成功！").waitFor();
