@@ -37,14 +37,14 @@ function input_password() {
 
 function turnOn() {
   while(!device.isScreenOn()) {
-  	device.wakeUpIfNeeded();
-  	scroll();
-  	if(password) {
-    	while (!text('1').exists()) 
-    	  scroll();
-    	input_password();
-  	}
-	}
+    device.wakeUpIfNeeded();
+    scroll();
+    if(password) {
+      while (!text('1').exists()) 
+        scroll();
+      input_password();
+    }
+  }
 }
 
 function backWXHome(){
@@ -66,16 +66,19 @@ waitFindAndClick("通讯录");
 
 
 while(!text("山东师范大学e校园").exists()) swipe(500, 300, 500, 1700, 10);
+sleep(500);
 waitFindAndClick("山东师范大学e校园");
 
 while(!click("疫情防控")){
-	swipe(500, 1700, 500, 300, 10);
+  swipe(500, 1700, 500, 300, 10);
 };
 
 sleep(5000);
 
 while(!click("提 交")){
-  while(!text("提 交").exists()) swipe(500, 1700, 500, 300, 10);
+  text("每天上午10点前上报当日个人情况").waitFor();
+  while(text("提 交").findOne().bounds().centerY() == 784) swipe(500, 1700, 500, 300, 10);
+  while(text("提 交").findOne().bounds().centerY() > 1825) swipe(500, 1700, 500, 300, 10);
   if(findAndClick("提 交")) break;
 };
 
